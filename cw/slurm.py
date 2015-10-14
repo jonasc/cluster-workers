@@ -18,7 +18,7 @@ def _jobinfo():
     tuples are of the form (jobid, jobname, username, nodelist).
     """
     joblist = subprocess.check_output(
-        ['squeue', '-o', '%i %j %u %N', '-h']
+        ['squeue', '-o', '%i %j %u %N', '-h', '--user', 'gillettm']
     ).strip()
     if not joblist:
         return
