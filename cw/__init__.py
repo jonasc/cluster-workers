@@ -54,7 +54,7 @@ def slow_ser(obj):
 
 def slow_deser(blob):
     """Deserialize a complex object."""
-    return dill.lods(blob)
+    return dill.loads(blob)
 
 
 @lru_cache()
