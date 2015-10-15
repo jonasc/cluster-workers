@@ -96,7 +96,7 @@ def _msg_ser(msg):
     if type(msg) in (WorkerRegisterMessage, WorkerDepartMessage):
         return typename
     elif isinstance(msg, (TaskMessage, ResultMessage)):
-        return marshal.dumps((typename, tuple(msg)))
+        return dill.dumps((typename, tuple(msg)))
     else:
         assert False
 
@@ -106,7 +106,7 @@ def _msg_deser(text):
         typ = globals()[text]
         return typ()
     else:
-        typename, vals = marshal.loads(text)
+        typename, vals = dill.loads(text)
         typ = globals()[typename]
         return typ(*vals)
 
