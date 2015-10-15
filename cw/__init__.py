@@ -1,5 +1,6 @@
 from collections import namedtuple, OrderedDict
-from cloud import serialization
+#from cloud import serialization
+import dill
 import bluelet
 import marshal
 import random
@@ -48,12 +49,12 @@ def lru_cache(size=128):
 
 def slow_ser(obj):
     """Serialize a complex object (like a closure)."""
-    return serialization.serialize(obj, True)
+    return dill.dumps(obj)
 
 
 def slow_deser(blob):
     """Deserialize a complex object."""
-    return serialization.deserialize(blob)
+    return dill.lods(blob)
 
 
 @lru_cache()
