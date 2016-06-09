@@ -117,8 +117,8 @@ def start(nworkers, master=True, workers=True, master_options=[],
 
         while True:
             _, status = subprocess.check_output(
-                ['squeue', '-o', '%i %t', '-h', '--job', jobid]
-            ).strip()
+                ['squeue', '-o', '%i %t', '-h', '--job', str(jobid)]
+            ).split()
 
             if status == 'R':
                 break
