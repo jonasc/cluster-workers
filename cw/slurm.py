@@ -114,7 +114,17 @@ def start(nworkers, master=True, workers=True, master_options=[],
         print('starting master')
         jobid = _start_master(master_options)
         print('master job', jobid, 'started')
-        time.sleep(5)
+
+        while True:
+            _, status = subprocess.check_output(
+                ['squeue', '-o', '%i %t', '-h', '--job', jobid]
+            ).strip()
+
+            if status == 'R':
+                break
+            else:
+                time.sleep(5)
+
         print('master running on', master_host())
 
     # Workers.
