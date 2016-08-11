@@ -1,5 +1,4 @@
 from collections import namedtuple, OrderedDict
-#from cloud import serialization
 import dill
 import bluelet
 import marshal
